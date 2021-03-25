@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>C语言学习笔记 | Potato1643&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目录01-取值范围 CPU能够读懂的最小单位——比特位   内存机构的最小寻址单位——字节，Byte ，B   1Byte &#x3D;&#x3D; 8bit  02-短路求值 &amp;&amp;    左边为0，右边表达式便不再执行 ||      左边为1，右边表达式便不再执行   goto 语句——直接跳出循环  17-数组 整形int在内存中占4个字节 字符型char在内存中占1个字节 双精度double在">
+  <meta name="description" content="目录 避免重复造轮子 不会就查阅FishC网站！  01-取值范围 CPU能够读懂的最小单位——比特位   内存机构的最小寻址单位——字节，Byte ，B   1Byte &#x3D;&#x3D; 8bit  02-短路求值 &amp;&amp;    左边为0，右边表达式便不再执行 ||      左边为1，右边表达式便不再执行   goto 语句——直接跳出循环  17-数组 整形int在内存中占4个字节 字符型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言学习笔记">
 <meta property="og:url" content="http://example.com/2021/03/17/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Potato1643&#39;s blog">
-<meta property="og:description" content="目录01-取值范围 CPU能够读懂的最小单位——比特位   内存机构的最小寻址单位——字节，Byte ，B   1Byte &#x3D;&#x3D; 8bit  02-短路求值 &amp;&amp;    左边为0，右边表达式便不再执行 ||      左边为1，右边表达式便不再执行   goto 语句——直接跳出循环  17-数组 整形int在内存中占4个字节 字符型char在内存中占1个字节 双精度double在">
+<meta property="og:description" content="目录 避免重复造轮子 不会就查阅FishC网站！  01-取值范围 CPU能够读懂的最小单位——比特位   内存机构的最小寻址单位——字节，Byte ，B   1Byte &#x3D;&#x3D; 8bit  02-短路求值 &amp;&amp;    左边为0，右边表达式便不再执行 ||      左边为1，右边表达式便不再执行   goto 语句——直接跳出循环  17-数组 整形int在内存中占4个字节 字符型">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-17T15:42:50.000Z">
-<meta property="article:modified_time" content="2021-03-24T12:32:29.474Z">
+<meta property="article:modified_time" content="2021-03-25T07:31:50.077Z">
 <meta property="article:author" content="potato1643">
 <meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary">
@@ -179,7 +179,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><h4 id="01-取值范围"><a href="#01-取值范围" class="headerlink" title="01-取值范围"></a>01-取值范围</h4><ul>
+        <h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><blockquote>
+<p>避免重复造轮子</p>
+<p>不会就查阅FishC网站！</p>
+</blockquote>
+<h4 id="01-取值范围"><a href="#01-取值范围" class="headerlink" title="01-取值范围"></a>01-取值范围</h4><ul>
 <li>CPU能够读懂的最小单位——比特位  </li>
 <li>内存机构的最小寻址单位——字节，Byte ，B  </li>
 <li>1Byte == 8bit</li>
@@ -193,12 +197,36 @@
 </blockquote>
 <h4 id="17-数组"><a href="#17-数组" class="headerlink" title="17-数组"></a>17-数组</h4><ul>
 <li>整形int在内存中占4个字节</li>
-<li>字符型char在内存中占1个字节</li>
+<li>字符型char在内存中占1个字节；浮点型float在内存中占4个字节</li>
 <li>双精度double在内存中占8个字节</li>
 <li>int a[x]，<strong>数组可以动态定义</strong></li>
 <li>数组中元素下标从0开始</li>
 <li><strong>注意数组的越界</strong></li>
 <li>sizeof 用来求占用的内存大小</li>
+</ul>
+<h4 id="21-指针"><a href="#21-指针" class="headerlink" title="21-指针"></a><strong>21-指针</strong></h4><ul>
+<li>变量名告诉编译器，编译器按照变量名找到对应的地址</li>
+<li><strong>地址——指针；存放地址（指针）的变量——指针变量</strong></li>
+<li><strong>避免访问未初始化的指针</strong></li>
+<li>定义时写为*pa只是为了与正常变量进行区分，指针变量为pa</li>
+</ul>
+<h4 id="22-指针和数组"><a href="#22-指针和数组" class="headerlink" title="22-指针和数组"></a>22-指针和数组</h4><blockquote>
+<p><strong>要学会看运算符的优先级！</strong></p>
+</blockquote>
+<ul>
+<li><p>数组名其实是数组第一个元素的地址</p>
+</li>
+<li><p>数组名只是一个地址；而指针是一个左值</p>
+</li>
+<li><p><strong>指针数组——数组</strong>；指针数组是一个数组，每个数组元素存放一个指针变量</p>
+</li>
+<li><p><strong>数组指针——指针</strong>；数组指针是一个指针，它指向的是一个数组</p>
+</li>
+<li><p><em>array 表示数组第一个元素的位置，而 &amp;array 表示的是整个数组的位置（这里将数组看做一个整体）</em></p>
+<blockquote>
+<p><strong>重点强调：array 是数组第一个元素的地址，所以 array + 1 指向数组第二个元素；&amp;array 是整个数组的地址，所以 &amp;array + 1 指向整个数组最后的位置。</strong></p>
+</blockquote>
+</li>
 </ul>
 
       
